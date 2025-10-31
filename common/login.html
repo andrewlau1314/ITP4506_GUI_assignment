@@ -14,27 +14,25 @@
         <h4>Welcome! Please Login</h4>
       </div>
 
-      <form id="login-form" novalidate>
+      <form id="login-form" novalidate onsubmit="login(); return false;">
         <div class="form-group">
-          <label for="login-email">Email</label>
+          <label for="email">Email</label>
           <input
             type="email"
-            id="login-email"
+            id="email"
             placeholder="example@domain.com"
           />
         </div>
 
         <div class="form-group">
-          <label for="login-password">Password</label>
+          <label for="pass">Password</label>
           <input
             type="password"
-            id="login-password"
+            id="pass"
             placeholder="Enter your password"
           />
         </div>
 
-        
-            
         <button type="submit" class="btn">Login</button>
       </form>
 
@@ -44,6 +42,6 @@
       </p>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/auth.js"></script>
   </body>
 </html>
