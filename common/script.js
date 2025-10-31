@@ -4,10 +4,10 @@ $(document).ready(function () {
   $("#role").change(function () {
     if ($(this).val() === "sales") {
       $("#staff-field").slideDown(300);
-      $("#staffId").focus();
+      $("#staff-id").focus();
     } else {
       $("#staff-field").slideUp(300);
-      $("#staffId").val("");
+      $("#staff-id").val("");
     }
   });
 
@@ -20,10 +20,10 @@ $(document).ready(function () {
     const name = $("#name").val().trim();
     const phone = $("#phone").val().trim();
     const email = $("#email").val().trim();
-    const pass = $("#pass").val();
+    const password = $("#password").val();
     const confirmPassword = $("#confirm-password").val();
     const role = $("#role").val();
-    const staffId = role === "sales" ? $("#staffId").val().trim() : null;
+    const staffId = role === "sales" ? $("#staff-id").val().trim() : null;
 
     if (!name) {
       $("#name").siblings(".error-msg").show();
@@ -40,12 +40,12 @@ $(document).ready(function () {
       valid = false;
     }
 
-    if (pass.length < 8) {
-      $("#pass").siblings(".error-msg").show();
+    if (password.length < 8) {
+      $("#password").siblings(".error-msg").show();
       valid = false;
     }
 
-    if (confirmPassword !== pass) {
+    if (confirmPassword !== password) {
       $("#confirm-password").siblings(".error-msg").show();
       valid = false;
     }
@@ -56,7 +56,7 @@ $(document).ready(function () {
     }
 
     if (role === "sales" && !staffId) {
-      $("#staffId").siblings(".error-msg").show();
+      $("#staff-id").siblings(".error-msg").show();
       valid = false;
     }
 
@@ -91,12 +91,11 @@ $(document).ready(function () {
       }
 
       if (role === "sales" && allStaffIds.includes(staffId)) {
-        $("#staffId").siblings(".error-msg").text("此員工編號已使用").show();
+        $("#staff-id").siblings(".error-msg").text("此員工編號已使用").show();
         return;
       }
 
-      // Store user using auth.js schema: { email, pass, type, name, phone, staffId }
-      const newUser = { email, pass, type: role === 'sales' ? 'Staff' : 'Customer', name, phone, staffId };
+      const newUser = { role, name, phone, email, password, staffId };
       localUsers.push(newUser);
       localStorage.setItem("users", JSON.stringify(localUsers));
 
@@ -105,5 +104,63 @@ $(document).ready(function () {
     }
   });
 
+  $("#login-form").submit(function (e) {
+    e.preventDefault();
+
+    const inputEmail = $("#login-email").val().trim();
+    const inputPassword = $("#login-password").val();
+
+    if (!inputEmail || !/\S+@\S+\.\S+/.test(inputEmail)) {
+      alert("Please enter a valid email!");
+      $("#login-email").focus();
+      return;
+    }
+    if (!inputPassword) {
+      alert("Please enter password!");
+      $("#login-password").focus();
+      return;
+    }
+
+    const localUsers = JSON.parse(localStorage.getItem("users") || "[]");
+    const localUser = localUsers.find(u => u.email === inputEmail && u.password === inputPassword);
+
+    if (localUser) {
+      loginSuccess(localUser);
+      return;
+    }
+
+    $.get("USERS.TXT", function (data) {
+      const lines = data.trim().split("\n");
+      for (let line of lines) {
+        const parts = line.split("|");
+        const [role, email, password, name, phone, staffId] = parts;
+
+        if (email === inputEmail && password === inputPassword) {
+          const user = { role, name, email, phone, staffId: staffId || null };
+          loginSuccess(user);
+          return;
+        }
+      }
+      alert("Email or password worng!");
+      $("#login-password").val("").focus();
+    }).fail(function () {
+      alert("Error: Cant load USERS.TXT");
+    });
+  });
+
+
+  function loginSuccess(user) {
+    localStorage.setItem("currentUser", JSON.stringify({
+      role: user.role,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      staffId: user.staffId
+    }));
+    alert(`Welcome, ${user.name}!`);
+    window.location.href = user.role === "customer" 
+      ? "dashboard_customer.html" 
+      : "dashboard_sales.html";
+  }
 
 });

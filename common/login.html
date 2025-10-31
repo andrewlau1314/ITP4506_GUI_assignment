@@ -4,35 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../css/index.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
-  <body>
+  <body
+    style="
+      background-image: url(../img/background.png);
+      background-size: 100% 100%;
+      background-position: center;
+      background-attachment: fixed;
+    "
+  >
     <div class="login-container">
       <div class="title">
         <h1>Smile & Sunshine Toy Co. Ltd.</h1>
         <h4>Welcome! Please Login</h4>
       </div>
 
-      <form id="login-form" novalidate onsubmit="login(); return false;">
+      <form id="login-form" novalidate>
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="login-email">Email</label>
           <input
             type="email"
-            id="email"
+            id="login-email"
             placeholder="example@domain.com"
           />
         </div>
 
         <div class="form-group">
-          <label for="pass">Password</label>
+          <label for="login-password">Password</label>
           <input
             type="password"
-            id="pass"
+            id="login-password"
             placeholder="Enter your password"
           />
         </div>
-
         <button type="submit" class="btn">Login</button>
       </form>
 
@@ -42,6 +48,6 @@
       </p>
     </div>
 
-    <script src="../js/auth.js"></script>
+    <script src="../js/index.js"></script>
   </body>
 </html>
