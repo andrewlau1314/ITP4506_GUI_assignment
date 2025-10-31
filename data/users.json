@@ -1,0 +1,32 @@
+[
+  {
+    "role": "customer",
+    "name": "Alice Wong",
+    "email": "customer1@email.com",
+    "phone": "91234567",
+    "password": "pass123"
+  },
+  {
+    "role": "customer",
+    "name": "Bob Chan",
+    "email": "customer2@email.com",
+    "phone": "98765432",
+    "password": "pass456"
+  },
+  {
+    "role": "sales",
+    "name": "Sam Lee",
+    "email": "staff1@smile.com",
+    "phone": "91234568",
+    "password": "staff123",
+    "staffId": "S001"
+  },
+  {
+    "role": "sales",
+    "name": "Tina Ho",
+    "email": "sales2@smiletoy.com",
+    "phone": "91112222",
+    "password": "staff456",
+    "staffId": "S002"
+  }
+]

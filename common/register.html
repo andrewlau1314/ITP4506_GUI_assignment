@@ -4,10 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../css/index.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
-  <body>
+  <body
+    style="
+      background-image: url(../img/background.png);
+      background-size: 100% 100%;
+      background-position: center;
+      background-attachment: fixed;
+    "
+  >
     <div class="register-container">
       <div class="title">
         <h1>Smile & Sunshine Toy Co. Ltd.</h1>
@@ -39,7 +46,12 @@
           </div>
           <div class="form-group half">
             <label for="phone">Phone</label>
-            <input type="text" id="phone" placeholder="e.g. 12345678" maxlength="8" />
+            <input
+              type="text"
+              id="phone"
+              placeholder="e.g. 12345678"
+              maxlength="8"
+            />
             <div class="error-msg">Enter a valid phone</div>
           </div>
         </div>
@@ -73,9 +85,83 @@
         <div class="form-group">
           <label for="terms">
             <input type="checkbox" id="terms" /> I have read and agree to the
-            <a href="#" style="color: #667eea">terms and conditions</a>
+            <a href="#" id="open-terms" style="color: #667eea"
+              >terms and conditions</a
+            >
             <div class="error-msg">Please accept the terms and conditions</div>
           </label>
+        </div>
+        <div class="modal-overlay" id="terms-modal">
+          <div class="modal" id="modal-box">
+            <div class="modal-header">
+              Terms and Conditions – Smile &amp; Sunshine Toy Co. Ltd.
+            </div>
+            <div class="modal-body">
+              <h2>1. Acceptance of Terms</h2>
+              <p>
+                By accessing or using any product, service, or website provided
+                by
+                <strong>Smile &amp; Sunshine Toy Co. Ltd.</strong> (hereinafter
+                “we,” “us,” or “the Company”), you agree to be bound by these
+                Terms and Conditions. If you do not agree, please do not use our
+                products or services.
+              </p>
+
+              <h2>2. Use of Products</h2>
+              <p>
+                Our toys are intended for children aged 3 and above unless
+                otherwise labeled. Adult supervision is recommended for younger
+                children. The Company is not liable for misuse, improper
+                assembly, or accidents resulting from failure to follow included
+                instructions.
+              </p>
+
+              <h2>3. Intellectual Property</h2>
+              <p>
+                All designs, characters, logos, and content are the exclusive
+                property of Smile &amp; Sunshine Toy Co. Ltd. Unauthorized
+                reproduction, distribution, or modification is strictly
+                prohibited and may result in legal action.
+              </p>
+
+              <h2>4. Warranty &amp; Returns</h2>
+              <p>
+                We offer a <strong>90-day limited warranty</strong> against
+                manufacturing defects. Returns for unused items in original
+                packaging are accepted within 30 days of purchase. Shipping fees
+                are non-refundable.
+              </p>
+
+              <h2>5. Limitation of Liability</h2>
+              <p>
+                To the fullest extent permitted by law, Smile &amp; Sunshine Toy
+                Co. Ltd. shall not be liable for any indirect, incidental, or
+                consequential damages arising from the use of our products, even
+                if advised of the possibility of such damages.
+              </p>
+
+              <h2>6. Privacy</h2>
+              <p>
+                We collect minimal personal data required for order fulfillment
+                and marketing opt-ins. Your information will never be sold to
+                third parties.
+              </p>
+
+              <h2>7. Governing Law</h2>
+              <p>
+                These terms are governed by the laws of Hong Kong SAR. Any
+                disputes shall be resolved in the courts of Hong Kong.
+              </p>
+
+              <h2>8. Changes to Terms</h2>
+              <p>
+                We reserve the right to modify these terms at any time.
+                Continued use of our products after changes constitutes
+                acceptance of the new terms.
+              </p>
+            </div>
+            <button class="btn-close" id="close-modal">Close</button>
+          </div>
         </div>
 
         <button type="submit" class="btn">Register</button>
@@ -87,6 +173,34 @@
       </p>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/index.js"></script>
+    <script>
+      //Open Terms
+      const openLink = document.getElementById("open-terms");
+      const overlay = document.getElementById("terms-modal");
+      const modal = document.getElementById("modal-box");
+      const closeBtn = document.getElementById("close-modal");
+      const checkbox = document.getElementById("terms");
+
+      openLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        overlay.style.display = "flex";
+        setTimeout(() => modal.classList.add("show"), 10);
+      });
+
+      const closeModal = () => {
+        modal.classList.remove("show");
+        setTimeout(() => (overlay.style.display = "none"), 350);
+      };
+      closeBtn.addEventListener("click", closeModal);
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && overlay.style.display === "flex")
+          closeModal();
+      });
+    </script>
   </body>
 </html>
