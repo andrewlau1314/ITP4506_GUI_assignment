@@ -1,0 +1,30 @@
+<!-- Add this button in history list -->
+<button class="btn btn-success" onclick="downloadPDF('${q.id}')">Download PDF</button>
+
+<script>
+    window.downloadPDF = function(id) {
+        const q = quotes.find(x => x.id === id);
+        const content = `
+      <h2>Quote #${q.id}</h2>
+      <p><strong>Status:</strong> ${q.status}</p>
+      <p><strong>Price:</strong> ${q.quote ? q.quote.price + ' HKD' : 'Pending'}</p>
+      <p><strong>Est. Delivery:</strong> ${q.deliveryDate || 'TBD'}</p>
+      <img src="${q.toy.sketch}" width="300">
+      <hr>
+      <p>Thank you for choosing Smile & Sunshine!</p>
+    `;
+
+        const win = window.open('', '_blank');
+        win.document.write(`
+      <html>
+        <head><title>Quote ${q.id}</title></head>
+        <body style="font-family:Arial; padding:30px;">
+          ${content}
+        </body>
+      </html>
+    `);
+        win.document.close();
+        win.focus();
+        setTimeout(() => win.print(), 500);
+    };
+</script>
