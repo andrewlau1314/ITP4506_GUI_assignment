@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="register-container">
+      <div class="title">
+        <h1>Smile & Sunshine Toy Co. Ltd.</h1>
+        <h4>Register a new account</h4>
+      </div>
+      <form id="register-form" novalidate>
+        <div class="form-group">
+          <label for="role">Register as</label>
+          <select id="role" required>
+            <option value="customer" checked>Customer</option>
+            <option value="sales">Sales</option>
+          </select>
+        </div>
+        <div class="form-group staff-field" id="staff-field">
+          <label for="staff-id">Staff ID</label>
+          <input
+            type="text"
+            id="staff-id"
+            placeholder="Please enter your Staff ID"
+          />
+          <div class="error-msg">Enter a valid Staff ID</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter your name" />
+            <div class="error-msg">Please enter your name</div>
+          </div>
+          <div class="form-group half">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" placeholder="e.g. 12345678" maxlength="8" />
+            <div class="error-msg">Enter a valid phone</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="example@domain.com" />
+          <div class="error-msg">Enter a valid email</div>
+        </div>
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="At least 8 characters"
+            />
+            <div class="error-msg">Please enter at least 8 characters</div>
+          </div>
+
+          <div class="form-group half">
+            <label for="confirm-password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              placeholder="Enter your password again"
+            />
+            <div class="error-msg">Password mismatch</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="terms">
+            <input type="checkbox" id="terms" /> I have read and agree to the
+            <a href="#" style="color: #667eea">terms and conditions</a>
+            <div class="error-msg">Please accept the terms and conditions</div>
+          </label>
+        </div>
+
+        <button type="submit" class="btn">Register</button>
+      </form>
+
+      <p class="text-center mt-3 text-muted">
+        Already have an account?
+        <a href="login.html" style="color: #667eea">Login now</a>
+      </p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

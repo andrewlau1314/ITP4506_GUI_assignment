@@ -1,4 +1,6 @@
 // USERS.TXT → localStorage on first load
+
+
 if (!localStorage.getItem('users')) {
     const users = [
         {email:'customer1@email.com', pass:'pass123', type:'Customer', name:'Alice Wong', phone:'91234567'},
