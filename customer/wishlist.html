@@ -7,14 +7,9 @@
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
+<div id="site-header"></div>
 <header>
-  <h1>My Wish List</h1>
-  <nav>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="create-quote.html">Create Quote</a>
-    <a href="history.html">History</a>
-    <a href="#" onclick="logout()">Logout</a>
-  </nav>
+  <!-- placeholder removed: navbar injected -->
 </header>
 
 <div class="container">
@@ -22,6 +17,8 @@
 </div>
 
 <script src="../js/index.js"></script>
+<script src="../js/load-navbar.js"></script>
+<script>loadNavbar('site-header');</script>
 <script>
   (function () {
     const user = getCurrentUser();

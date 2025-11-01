@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+<div id="site-header"></div>
 <div class="container">
     <div class="card">
         <h2>Quote Request #<span id="quoteId"></span></h2>
@@ -23,6 +24,8 @@
 </div>
 
 <script src="../js/index.js"></script>
+<script src="../js/load-navbar.js"></script>
+<script>loadNavbar('site-header');</script>
 <script>
 (function(){
     const params = new URLSearchParams(location.search);

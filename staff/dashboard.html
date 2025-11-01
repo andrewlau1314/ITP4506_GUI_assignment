@@ -7,12 +7,7 @@
     <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-<header>
-    <h1>Smile & Sunshine – Staff Dashboard</h1>
-    <nav>
-        <a href="../common/login.html" onclick="logout()">Logout</a>
-    </nav>
-</header>
+<div id="site-header"></div>
 
 <div class="container fade-in">
     <div class="card">
@@ -36,6 +31,8 @@
 
 <!-- === LOAD SCRIPTS AT THE END === -->
 <script src="../js/index.js"></script>
+<script src="../js/load-navbar.js"></script>
+<script>loadNavbar('site-header');</script>
 <script src="../js/staff/staff.js"></script>
 </body>
 </html>

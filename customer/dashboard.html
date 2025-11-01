@@ -6,11 +6,8 @@
     <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-<header>
+<div id="site-header"></div>
 
-    <h1>Smile & Sunshine Toy Co. Ltd. </h1>
-
-</header>
 <div class="container fade-in">
 
     <div class="card">
@@ -21,12 +18,13 @@
 
 </div>
 <script src="../js/index.js"></script>
+<script src="../js/load-navbar.js"></script>
+<script>loadNavbar('site-header');</script>
 <script>
 (function(){
   const user = getCurrentUser();
   if (!user || user.type !== 'Customer') {
     window.location.href = '../common/login.html';
-    return;
   }
 })();
 </script>
