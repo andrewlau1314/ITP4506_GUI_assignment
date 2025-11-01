@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-HK">
 <head>
     <title>Create Quote Request</title>
     <link rel="stylesheet" href="../css/style.css">
@@ -47,48 +47,53 @@
     </div>
 </div>
 
-<script src="../js/auth.js"></script>
+<script src="../js/index.js"></script>
 <script>
-    const user = getCurrentUser();
-    if (!user || user.type !== 'Customer') window.location.href = '../common/login.html';
+    (function () {
+        const user = getCurrentUser();
+        if (!user || user.type !== 'Customer') {
+            window.location.href = '../common/login.html';
+            return;
+        }
 
-    document.getElementById('pantone').addEventListener('input', e => {
-        document.getElementById('colorPrev').style.background = e.target.value;
-    });
+        document.getElementById('pantone').addEventListener('input', e => {
+            document.getElementById('colorPrev').style.background = e.target.value;
+        });
 
-    document.getElementById('quoteForm').onsubmit = function(e) {
-        e.preventDefault();
-        const file = document.getElementById('sketch').files[0];
-        if (!file) { alert('Please upload a sketch'); return; }
+        document.getElementById('quoteForm').onsubmit = function(e) {
+            e.preventDefault();
+            const file = document.getElementById('sketch').files[0];
+            if (!file) { alert('Please upload a sketch'); return; }
 
-        const reader = new FileReader();
-        reader.onload = function(ev) {
-            const quote = {
-                id: 'Q' + Date.now(),
-                customerEmail: user.email,
-                status: 'Pending',
-                createdAt: new Date().toISOString().split('T')[0],
-                toy: {
-                    sketch: ev.target.result,
-                    dimensions: document.getElementById('dimensions').value,
-                    pantone: document.getElementById('pantone').value,
-                    materials: document.getElementById('materials').value,
-                    quantity: parseInt(document.getElementById('quantity').value)
-                },
-                paymentMethod: document.getElementById('payment').value,
-                quote: null,
-                deliveryDate: null,
-                messages: []
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const quote = {
+                    id: 'Q' + Date.now(),
+                    customerEmail: user.email,
+                    status: 'Pending',
+                    createdAt: new Date().toISOString().split('T')[0],
+                    toy: {
+                        sketch: ev.target.result,
+                        dimensions: document.getElementById('dimensions').value,
+                        pantone: document.getElementById('pantone').value,
+                        materials: document.getElementById('materials').value,
+                        quantity: parseInt(document.getElementById('quantity').value)
+                    },
+                    paymentMethod: document.getElementById('payment').value,
+                    quote: null,
+                    deliveryDate: null,
+                    messages: []
+                };
+
+                let quotes = JSON.parse(localStorage.getItem('quotes') || '[]');
+                quotes.push(quote);
+                localStorage.setItem('quotes', JSON.stringify(quotes));
+                alert('Added to Wish List! Go to Wish List to submit.');
+                window.location.href = 'wishlist.html';
             };
-
-            let quotes = JSON.parse(localStorage.getItem('quotes') || '[]');
-            quotes.push(quote);
-            localStorage.setItem('quotes', JSON.stringify(quotes));
-            alert('Added to Wish List! Go to Wish List to submit.');
-            window.location.href = 'wishlist.html';
+            reader.readAsDataURL(file);
         };
-        reader.readAsDataURL(file);
-    };
+    })();
 </script>
 </body>
 </html>

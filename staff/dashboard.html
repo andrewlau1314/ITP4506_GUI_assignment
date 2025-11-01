@@ -2,35 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Staff Dashboard - Quotation System</title>
     <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
 <header>
-    <h1>Staff Dashboard</h1>
-    <nav><a href="#" onclick="logout()">Logout</a></nav>
+    <h1>Smile & Sunshine – Staff Dashboard</h1>
+    <nav>
+        <a href="../common/login.html" onclick="logout()">Logout</a>
+    </nav>
 </header>
 
-<div class="container">
-    <h2>Pending Quote Requests</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Customer</th>
-            <th>Quantity</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody id="requests">
-        <!-- Filled by JavaScript -->
-        </tbody>
-    </table>
+<div class="container fade-in">
+    <div class="card">
+        <h2>Pending Quotation Requests</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Quote ID</th>
+                <th>Customer</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="requests">
+            <!-- JavaScript will fill this -->
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<!-- Load JS at the end -->
-<script src="../js/auth.js"></script>
-<script src="../js/staff.js"></script>
+<!-- === LOAD SCRIPTS AT THE END === -->
+<script src="../js/index.js"></script>
+<script src="../js/staff/staff.js"></script>
 </body>
 </html>

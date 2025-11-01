@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-HK">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <title>Smile & Sunshine.</title>
+    <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
+<header>
 
+    <h1>Smile & Sunshine Toy Co. Ltd. </h1>
+
+</header>
+<div class="container fade-in">
+
+    <div class="card">
+        <h2>報價申請系統</h2>
+        <p><a href="create-quote.html" class="btn btn-primary">設計客製玩具</a></p>
+        <p><a href="wishlist.html" class="btn btn-success">我的願望清單</a></p>
+    </div>
+
+</div>
+<script src="../js/index.js"></script>
+<script>
+(function(){
+  const user = getCurrentUser();
+  if (!user || user.type !== 'Customer') {
+    window.location.href = '../common/login.html';
+    return;
+  }
+})();
+</script>
 </body>
 </html>

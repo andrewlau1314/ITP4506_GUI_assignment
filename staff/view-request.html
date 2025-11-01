@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Generate Quote</title>
     <link rel="stylesheet" href="../css/style.css">
@@ -11,10 +11,10 @@
         <div id="toyDetails"></div>
 
         <form id="generateForm" class="hidden">
-            <label>Quote Price (HKD)</label>
+            <label for="price">Quote Price (HKD)</label>
             <input type="number" id="price" min="1" step="0.01" required>
 
-            <label>Estimated Delivery (days)</label>
+            <label for="days">Estimated Delivery (days)</label>
             <input type="number" id="days" min="1" required>
 
             <button type="submit" class="btn btn-success">Send Quote</button>
@@ -22,10 +22,9 @@
     </div>
 </div>
 
-<!-- JavaScript from Point 8 & 9 -->
-<script src="../js/auth.js"></script>
+<script src="../js/index.js"></script>
 <script>
-    // === POINT 8 & 9 CODE GOES HERE ===
+(function(){
     const params = new URLSearchParams(location.search);
     const id = params.get('id');
     let quotes = JSON.parse(localStorage.getItem('quotes') || '[]');
@@ -40,7 +39,7 @@
     // Display toy details
     document.getElementById('quoteId').textContent = quote.id;
     document.getElementById('toyDetails').innerHTML = `
-      <img src="${quote.toy.sketch}" width="200"><br>
+      <img src="${quote.toy.sketch}" width="200" alt="sketch"><br>
       <p><strong>Dimensions:</strong> ${quote.toy.dimensions}</p>
       <p><strong>Color:</strong> <span style="background:${quote.toy.pantone};width:30px;height:30px;display:inline-block;"></span></p>
       <p><strong>Materials:</strong> ${quote.toy.materials}</p>
@@ -69,6 +68,7 @@
         alert('Quote sent!');
         window.location.href = 'dashboard.html';
     };
+})();
 </script>
 </body>
 </html>

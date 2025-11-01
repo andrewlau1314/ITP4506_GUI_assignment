@@ -2,7 +2,7 @@
 body { background:#f4f7fa; color:#333; line-height:1.6; }
 .container { max-width:1100px; margin:auto; padding:20px; }
 
-header { background:#ff6b6b; color:white; padding:1rem; text-align:center; }
+header { background: rgba(252, 168, 90, 0.86); color:white; padding:1rem; text-align:center; }
 nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
 nav a:hover { text-decoration:underline; }
 
