@@ -1,6 +1,4 @@
 $(document).ready(function () {
-  $(".error-msg").hide();
-
   //Switch Role Animation
   $("#role").change(function () {
     if ($(this).val() === "sales") {
@@ -142,23 +140,25 @@ $(document).ready(function () {
   $("#login-form").submit(async function (e) {
     e.preventDefault();
 
+    let valid = true;
     const $loginEmail = $("#login-email");
     const $loginPassword = $("#login-password");
-
     const inputEmail = $loginEmail.val().trim();
     const inputPassword = $loginPassword.val();
 
     if (!inputEmail || !/\S+@\S+\.\S+/.test(inputEmail)) {
-      alert("Please enter a valid email!");
+      $loginEmail.siblings(".error-msg").show();;
       $loginEmail.focus();
-      return;
+      valid = false;
+    }
+    
+    if (!inputPassword) {
+      $loginPassword.siblings(".error-msg").show();
+      $loginPassword.focus();
+      valid = false;
     }
 
-    if (!inputPassword) {
-      alert("Please enter password!");
-      $loginPassword.focus();
-      return;
-    }
+    if (!valid) return;
 
     let localUsers = JSON.parse(localStorage.getItem("users") || "[]");
     let jsonUsers = [];
@@ -169,7 +169,7 @@ $(document).ready(function () {
         jsonUsers = await response.json();
       }
     } catch (err) {
-      console.error("載入 users.json 失敗:", err);
+      console.error("Error: Fail to load users.json:", err);
     }
 
     if (localUsers.length === 0 && jsonUsers.length > 0) {

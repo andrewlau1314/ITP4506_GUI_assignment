@@ -192,14 +192,15 @@
         modal.classList.remove("show");
         setTimeout(() => (overlay.style.display = "none"), 350);
       };
+      closeBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeModal();
+      });
+
       closeBtn.addEventListener("click", closeModal);
       overlay.addEventListener("click", (e) => {
         if (e.target === overlay) closeModal();
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && overlay.style.display === "flex")
-          closeModal();
       });
     </script>
   </body>

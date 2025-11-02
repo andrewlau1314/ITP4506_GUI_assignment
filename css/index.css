@@ -154,6 +154,7 @@ body {
   color: red;
   font-size: 12px;
   animation: shake 0.5s;
+  display: none;
 }
 
 .modal-overlay {
@@ -214,4 +215,102 @@ body {
   font-size: 0.875rem;
   display: none;
   margin-top: 0.25rem;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+
+
+.logo {
+  height: 150px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  animation: pulse 1s;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.index-header h1 {
+  font-size: 2.8rem;
+  color: #eb6f2c;
+  margin-top: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 1, 1);
+  opacity: 0; 
+  animation: fadeInDown 2s ease forwards;
+  animation-delay: 1.2s;
+}
+
+.slogan {
+  font-style: italic;
+  font-size: 2rem;
+  color: #e32337;
+  margin: 20px 0 40px;
+  line-height: 1.5;
+  opacity: 0;
+  animation: fadeInDown 2s ease forwards;
+  animation-delay: 2s;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.btn-group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeInUp 1s ease 0.6s both;
+  animation-delay: 3s;
+}
+
+.btn-group .btn {
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(100);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
